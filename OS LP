@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAOUF STUDIO OS | LA BIBLE TECHNIQUE | LUXURY EDITION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;700;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root { 
+            --gold: #c3a373; /* Or brossé, moins jaune */
+            --dark-bg: #000000; /* Noir absolu */
+            --card-bg: #0a0a0a; /* Noir très légèrement grisé pour les cartes */
+            --text-main: #ffffff; /* Blanc pur pour le texte */
+            --text-muted: #888888; /* Gris pour les sous-titres */
+            --border: #222222; /* Gris très sombre pour les bordures */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: var(--text-main); 
+            overflow-x: hidden; 
+            transition: 0.5s;
+            letter-spacing: -0.02em; /* Style moderne tassé */
+        }
+
+        /* STYLE ARABE PREMIUM */
+        body.rtl { direction: rtl; font-family: 'Noto Naskh Arabic', serif; }
+        body.rtl .hero-title { font-family: 'Noto Naskh Arabic', serif; font-weight: 700; }
+
+        /* BOUTON LANGUE MINIMALISTE */
+        .lang-switch { 
+            position: fixed; top: 30px; right: 30px; z-index: 10000; 
+            background: transparent; color: var(--gold); 
+            border: 1px solid var(--border); 
+            padding: 10px 20px; border-radius: 0px; /* Carré pro */
+            cursor: pointer; font-weight: 700; font-size: 11px; 
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .lang-switch:hover { background: var(--gold); color: var(--dark-bg); border-color: var(--gold); }
+
+        /* HERO - FADE IN INITIAL */
+        .hero { 
+            height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center; 
+            padding: 20px; background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        .hero-title { 
+            font-family: 'Cinzel', serif; /* Police type gravure romaine */
+            font-size: clamp(50px, 12vw, 130px); 
+            font-weight: 700; color: var(--text-main); 
+            line-height: 0.85; text-transform: uppercase; letter-spacing: -0.05em;
+            margin-bottom: 20px;
+        }
+        .hero-sub {
+            font-size: 10px; letter-spacing: 8px; text-transform: uppercase; 
+            color: var(--gold); font-weight: 900;
+        }
+
+        /* SECTIONS - ESPACEMENT RESPIRANT */
+        .section { 
+            padding: 160px 20px; max-width: 1300px; margin: 0 auto; 
+            border-bottom: 1px solid var(--border); 
+        }
+        .section-title { 
+            font-family: 'Cinzel', serif; font-size: clamp(30px, 6vw, 60px); 
+            font-weight: 700; color: var(--text-main); 
+            text-transform: uppercase; letter-spacing: -0.03em;
+            margin-bottom: 80px; text-align: center;
+        }
+        .section-title span { color: var(--gold); } /* Pour mettre en valeur un mot */
+
+        /* BENTO GRID LUXE - BORDURES FINES, PAS D'OMBRE */
+        .grid-detail { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 1px; /* Espacement par la bordure */
+            background-color: var(--border); /* Couleur de la bordure entre les cartes */
+            border: 1px solid var(--border);
+        }
+        .card-lux { 
+            background-color: var(--card-bg); 
+            padding: 60px; 
+            transition: 0.5s; 
+            position: relative;
+        }
+        .card-lux:hover { background-color: #0f0f0f; } /* Très léger changement au survol */
+
+        .card-lux b { 
+            color: var(--gold); font-size: 10px; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 15px; 
+        }
+        .card-lux h3 { 
+            font-family: 'Inter', sans-serif; font-weight: 900;
+            font-size: 24px; color: var(--text-main); 
+            margin-bottom: 25px; text-transform: uppercase; letter-spacing: -0.03em;
+        }
+        .card-lux p { font-size: 14px; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+
+        .card-lux ul { list-style: none; margin-top: 25px; border-top: 1px solid var(--border); padding-top: 25px; }
+        .card-lux li { 
+            font-size: 13px; color: var(--text-muted); 
+            margin-bottom: 12px; position: relative; padding-left: 20px; font-weight: 300;
+        }
+        .card-lux li::before { 
+            content: ""; position: absolute; left: 0; top: 8px;
+            width: 8px; height: 1px; background-color: var(--gold); 
+        }
+
+        /* SECTION DEVIS SPECIAL - NOIR SUR BLANC TYPE AGENT */
+        .devis-special { background-color: var(--text-main); color: var(--dark-bg); border-radius: 0px; }
+        .devis-special .section-title, .devis-special .card-lux h3 { color: var(--dark-bg); }
+        .devis-special .card-lux { background-color: var(--text-main); border: 1px solid #eee; }
+        .devis-special .card-lux p, .devis-special .card-lux li { color: #333; }
+        .devis-special .card-lux b { color: var(--wine); }
+
+        /* AVIS CLIENTS - STYLE COPIE CERTIFIÉE */
+        .avis-name { display: block; margin-top: 25px; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+
+        /* CTA FINAL - BOUTON PLEIN OR, TEXTE NOIR */
+        .cta-section { 
+            text-align: center; padding: 160px 20px; 
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        .cta-btn { 
+            display: inline-block; 
+            background-color: var(--gold); color: var(--dark-bg); 
+            padding: 25px 60px; border-radius: 0px; /* Carré pro */
+            text-decoration: none; font-weight: 900; font-size: 16px; 
+            text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.4s; 
+            border: 1px solid var(--gold);
+        }
+        .cta-btn:hover { background-color: transparent; color: var(--gold); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .section { padding: 100px 20px; }
+            .card-lux { padding: 40px; }
+            .hero-title { line-height: 0.9; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="lang-switch" onclick="toggleLang()">FR / عربي</button>
+
+    <section class="hero">
+        <div data-aos="fade-in" data-aos-duration="2000">
+            <p class="hero-sub" data-lang="hero-sub">The Master Architecture</p>
+            <h1 class="hero-title">Raouf<br>Studio</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-lang="why-h">Pourquoi <span>Raouf Studio</span> ?</h2>
+        <div class="grid-detail">
+            <div class="card-lux" data-aos="fade-up">
+                <b>Ancrage Local</b>
+                <h3 data-lang="why-1-t">Précision Algérienne</h3>
+                <p data-lang="why-1-d">Un écosystème calibré pour le marché national : Devis en Dinar Algérien (DZD), intégration des saveurs locales plébiscitées et interface bilingue native.</p>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="200">
+                <b>Performance</b>
+                <h3 data-lang="why-2-t">Gain de Temps : 80%</h3>
+                <p data-lang="why-2-d">Libérez-vous des processus administratifs et des calculs complexes sur tableur. Concentrez votre énergie sur l'exécution artistique de vos pièces montées.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-lang="labo-h">Le Labo : <span>Algorithme</span> Culinaire</h2>
+        <div class="grid-detail">
+            <div class="card-lux" data-aos="fade-up">
+                <b>Architecture</b>
+                <h3 data-lang="l-cas-t">Spécifications Moules</h3>
+                <p>Modélisation géométrique des contenants pour une optimisation de la matière première.</p>
+                <ul data-lang="l-cas-l">
+                    <li>Diamètres gérés : 100mm à 400mm.</li>
+                    <li>Calcul volumétrique selon la découpe : Wedding (2x1x10cm) vs Classique.</li>
+                    <li>Ajustement dynamique de la hauteur pour pièces Prestige.</li>
+                </ul>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="200">
+                <b>Thermique</b>
+                <h3 data-lang="l-cui-t">Paramètres Cuisson</h3>
+                <p>Détermination scientifique des besoins énergétiques et des masses d'appareil.</p>
+                <ul data-lang="l-cui-l">
+                    <li>Nombre d'œufs calibré selon le volume exact du moule.</li>
+                    <li>Suggestion de temps de cuisson par litre de masse.</li>
+                    <li>Équilibrage Farine/Sucre pour stabilité structurelle.</li>
+                </ul>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="400">
+                <b>Physico-Chimie</b>
+                <h3 data-lang="l-chi-t">Formulation Crèmes</h3>
+                <p>Calcul des points de fusion et des indices de foisonnement des émulsions.</p>
+                <ul data-lang="l-chi-l">
+                    <li>Ratios Ganache précis : Noir (1:1), Lait (2:1), Blanc (3:1).</li>
+                    <li>Formulation du sirop d'imbibage : Densité sucre/eau.</li>
+                    <li>Stabilité des crèmes au beurre vs température ambiante.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" data-lang="st-h">Le Stock : Flux Tendu Connecté</h2>
+        <div class="grid-detail">
+            <div class="card-lux" data-aos="fade-right">
+                <b>Inventaire</b>
+                <h3 data-lang="st-1-t">Matières Premières</h3>
+                <p>Suivi analytique des intrants et consommables.</p>
+                <ul data-lang="st-1-l">
+                    <li>Suivi granulaire (g) : Chocolat couverture, Beurre AOP, Crème 35%.</li>
+                    <li>Gestion logistique : Plateaux, Boîtages, Tiges de renfort.</li>
+                    <li>Alertes automatiques de rupture de stock critique.</li>
+                </ul>
+            </div>
+            <div class="card-lux" data-aos="fade-left">
+                <b>Intelligence</b>
+                <h3 data-lang="st-2-t">Interconnexion Labo</h3>
+                <p>Automatisation des mouvements de stock basés sur la production.</p>
+                <ul data-lang="st-2-l">
+                    <li>Fonction 'Aspirer' : Déduction automatique des doses du Labo du Stock Central.</li>
+                    <li>Inventaire manuel simplifié par incrémentation (+/-).</li>
+                    <li>Calcul de la valeur financière du stock immobilisé.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section devis-special">
+        <h2 class="section-title" data-lang="dev-h">Devis Factory : Autonomie Client</h2>
+        <div class="grid-detail">
+            <div class="card-lux" data-aos="fade-up">
+                <b>Interface</b>
+                <h3 data-lang="dev-1-t">Configuration Front-End</h3>
+                <p>Laissez le client concevoir techniquement son projet.</p>
+                <ul data-lang="dev-1-l">
+                    <li>Saisie des dimensions souhaitées par le client.</li>
+                    <li>Sélection des saveurs et options décoratives.</li>
+                    <li>Génération instantanée du prix selon tes coefficients secrets.</li>
+                </ul>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="200">
+                <b>Back-Office</b>
+                <h3 data-lang="dev-2-t">Rentabilité Garantie</h3>
+                <p>Ne traitez que les leads qualifiés et validés.</p>
+                <ul data-lang="dev-2-l">
+                    <li>Traitement exclusif des commandes confirmées.</li>
+                    <li>Édition automatique du devis PDF professionnel.</li>
+                    <li>Marge bénéficiaire nette protégée sur chaque transaction.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" style="font-size: 40px;" data-lang="av-h">Témoignages Certifiés</h2>
+        <div class="grid-detail">
+            <div class="card-lux" data-aos="fade-up">
+                <p data-lang="av-1">"Une gestion analytique du stock qui a transformé nos opérations de production."</p>
+                <b class="avis-name">Ahmed - Chef Pâtissier</b>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="200">
+                <p data-lang="av-2">"L'automatisation des devis nous a permis de scaler notre prise de commande sans effort."</p>
+                <b class="avis-name">Chaima - Cake Designer</b>
+            </div>
+            <div class="card-lux" data-aos="fade-up" data-aos-delay="400">
+                <p data-lang="av-3">"La précision mathématique du Labo garantit une régularité parfaite de nos produits."</p>
+                <b class="avis-name">Chahrazed - Cake Designer</b>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div data-aos="zoom-in">
+            <h2 class="section-title" style="font-size: 40px; border: none; margin-bottom: 40px;" data-lang="cta-h">Digitalisez votre talent</h2>
+            <a href="https://wa.me/213792269732?text=Bonjour%20Raouf%20Studio%20je%20souhaite%20acquérir%20mon%20outil%20Cake%20Design%20Luxury%20Edition" class="cta-btn" data-lang="cta-btn">Acquérir mon OS maintenant</a>
+            <p style="margin-top: 40px; font-weight: 300; font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted);">Abderraouf Studio - Algiers</p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+
+        const translations = {
+            fr: {
+                "hero-sub": "The Master Architecture",
+                "why-h": "Pourquoi <span>Raouf Studio</span> ?",
+                "why-1-t": "Précision Algérienne", "why-1-d": "Prix en Dinar Algérien (DZD), saveurs locales et interface bilingue native.",
+                "why-2-t": "Gain de Temps : 80%", "why-2-d": "Libérez-vous des calculs complexes et du stress administratif.",
+                "labo-h": "Le Labo : <span>Algorithme</span> Culinaire",
+                "l-cas-t": "Spécifications Moules", "l-cas-l": "<li>Diamètres gérés : 100mm à 400mm.</li><li>Calcul volumétrique selon découpe (Wedding vs Classique).</li><li>Hauteur dynamique pour pièces Prestige.</li>",
+                "l-cui-t": "Paramètres Cuisson", "l-cui-l": "<li>Nombre d'œufs calibré selon volume exact.</li><li>Suggestion de temps de cuisson suggéré par litre.</li><li>Équilibrage Farine/Sucre pour stabilité structurelle.</li>",
+                "l-chi-t": "Formulation Crèmes", "l-chi-l": "<li>Ratios Ganache précis : Noir (1:1), Lait (2:1), Blanc (3:1).</li><li>Formulation sirop d'imbibage (densité).</li><li>Stabilité crèmes beurre vs température.</li>",
+                "st-h": "Le Stock : Flux Tendu Connecté",
+                "st-1-t": "Matières Premières", "st-1-l": "<li>Suivi granulaire (g) : Chocolat, Beurre, Crème 35%.</li><li>Gestion logistique : Plateaux, Boîtages, Tiges.</li><li>Alertes de rupture de stock critique.</li>",
+                "st-2-t": "Interconnexion Labo", "st-2-l": "<li>Fonction 'Aspirer' déduction automatique.</li><li>Inventaire manuel par incrémentation (+/-).</li><li>Calcul valeur financière stock immobilisé.</li>",
+                "dev-h": "Devis Factory : Autonomie Client",
+                "dev-1-t": "Configuration Front-End", "dev-1-l": "<li>Saisie des dimensions par le client.</li><li>Sélection saveurs et options décor.</li><li>Génération instantanée prix selon tes coefficients secrets.</li>",
+                "dev-2-t": "Rentabilité Garantie", "dev-2-l": "<li>Traitement exclusif commandes confirmées.</li><li>Édition automatique devis PDF professionnel.</li><li>Marge bénéficiaire nette protégée.</li>",
+                "av-h": "Témoignages Certifiés", 
+                "av-1": "Une gestion analytique du stock qui a transformé nos opérations de production.",
+                "av-2": "L'automatisation des devis nous a permis de scaler notre prise de commande sans effort.",
+                "av-3": "La précision mathématique du Labo garantit une régularité parfaite de nos produits.",
+                "cta-h": "Digitalisez votre talent", "cta-btn": "Acquérir mon OS maintenant"
+            },
+            ar: {
+                "hero-sub": "الهندسة المعمارية المتقنة",
+                "why-h": "لماذا <span>رؤوف ستوديو</span> ؟",
+                "why-1-t": "دقة جزائرية", "why-1-d": "الأسعار بالدينار الجزائري (DZD)، النكهات المحلية، وواجهة ثنائية اللغة.",
+                "why-2-t": "ربح الوقت: 80%", "why-2-d": "تخلص من الحسابات المعقدة والضغط الإداري.",
+                "labo-h": "المختبر: <span>الخوارزمية</span> الغذائية",
+                "l-cas-t": "مواصفات القوالب", "l-cas-l": "<li>أقطار من 100 ملم إلى 400 ملم.</li><li>حساب الحجم حسب التقطيع (أعراس vs كلاسيكي).</li><li>ارتفاع ديناميكي للقطع الفاخرة.</li>",
+                "l-cui-t": "معايير الطهي", "l-cui-l": "<li>عدد البيض الدقيق حسب الحجم.</li><li>اقتراح وقت الطهي للتر الواحد.</li><li>توازن الفرينة والسكر لثبات الهيكل.</li>",
+                "l-chi-t": "تركيبة الكريمات", "l-chi-l": "<li>نسب الغاناش (1:1، 2:1، 3:1).</li><li>تركيبة شاربات التشريب (الكثافة).</li><li>ثبات كريمات الزبدة vs الحرارة.</li>",
+                "st-h": "المخزون: تدفق مستمر ومتصل",
+                "st-1-t": "المواد الأولية", "st-1-l": "<li>سحب دقيق (غ) : شوكولا، زبدة، كريمة 35%.</li><li>تسيير لوجستي: علب ولوازم.</li><li>تنبيهات نفاذ المواد الحرجة.</li>",
+                "st-2-t": "الربط مع المختبر", "st-2-l": "<li>خاصية 'السحب التلقائي' من المخزون.</li><li>جرد يدوي بالزيادة والنقصان (+/-).</li><li>حساب القيمة المالية للمخزون المجمد.</li>",
+                "dev-h": "مصنع الفواتير: استقلالية الزبون",
+                "dev-1-t": "واجهة الزبون", "dev-1-l": "<li>الزبون يدخل المقاسات بنفسه.</li><li>اختيار النكهات وخيارات الديكور.</li><li>حساب فوري للسعر حسب أسرارك الخاصة.</li>",
+                "dev-2-t": "ضمان الربحية", "dev-2-l": "<li>استلام الطلبات المؤكدة فقط.</li><li>توليد تلقائي لفاتورة PDF احترافية.</li><li>حماية هامش الربح الصافي.</li>",
+                "av-h": "شهادات موثقة", 
+                "av-1": "تسيير تحليلي للمخزون غير عمليات الإنتاج لدينا تماماً.",
+                "av-2": "أتمتة الفواتير سمحت لنا بزيادة حجم الطلبات دون مجهود.",
+                "av-3": "الدقة الرياضية للمختبر تضمن جودة ثابتة لمنتجاتنا.",
+                "cta-h": "رقمن موهبتك", "cta-btn": "احصل على نظامك الآن"
+            }
+        };
+
+        let currentLang = 'fr';
+        function toggleLang() {
+            currentLang = currentLang === 'fr' ? 'ar' : 'fr';
+            document.body.className = currentLang === 'ar' ? 'rtl' : '';
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (el.tagName === 'UL') el.innerHTML = translations[currentLang][key];
+                else el.innerText = translations[currentLang][key];
+            });
+        }
+    </script>
+</body>
+</html>
